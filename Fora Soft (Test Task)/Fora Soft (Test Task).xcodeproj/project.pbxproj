@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		BCFE945325800444006A68FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945225800444006A68FE /* AppDelegate.swift */; };
 		BCFE945525800444006A68FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945425800444006A68FE /* SceneDelegate.swift */; };
-		BCFE945725800444006A68FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945625800444006A68FE /* ViewController.swift */; };
-		BCFE945A25800444006A68FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE945825800444006A68FE /* Main.storyboard */; };
+		BCFE945725800444006A68FE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945625800444006A68FE /* MainViewController.swift */; };
 		BCFE945C25800446006A68FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFE945B25800446006A68FE /* Assets.xcassets */; };
 		BCFE945F25800446006A68FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCFE945D25800446006A68FE /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,11 +18,10 @@
 		BCFE944F25800444006A68FE /* Fora Soft (Test Task).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fora Soft (Test Task).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE945225800444006A68FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCFE945425800444006A68FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BCFE945625800444006A68FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BCFE945925800444006A68FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BCFE945625800444006A68FE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BCFE945B25800446006A68FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCFE945E25800446006A68FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BCFE946025800446006A68FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCFE946025800446006A68FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "Fora Soft (Test Task)/New Group/Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +54,30 @@
 		BCFE945125800444006A68FE /* Fora Soft (Test Task) */ = {
 			isa = PBXGroup;
 			children = (
+				BCFE945625800444006A68FE /* MainViewController.swift */,
+				BCFE946E258008E5006A68FE /* Supporting */,
+				BCFE946C258008D1006A68FE /* App + Scene */,
+			);
+			path = "Fora Soft (Test Task)";
+			sourceTree = "<group>";
+		};
+		BCFE946C258008D1006A68FE /* App + Scene */ = {
+			isa = PBXGroup;
+			children = (
 				BCFE945225800444006A68FE /* AppDelegate.swift */,
 				BCFE945425800444006A68FE /* SceneDelegate.swift */,
-				BCFE945625800444006A68FE /* ViewController.swift */,
-				BCFE945825800444006A68FE /* Main.storyboard */,
+			);
+			path = "App + Scene";
+			sourceTree = "<group>";
+		};
+		BCFE946E258008E5006A68FE /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
 				BCFE945B25800446006A68FE /* Assets.xcassets */,
 				BCFE945D25800446006A68FE /* LaunchScreen.storyboard */,
 				BCFE946025800446006A68FE /* Info.plist */,
 			);
-			path = "Fora Soft (Test Task)";
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +139,6 @@
 			files = (
 				BCFE945F25800446006A68FE /* LaunchScreen.storyboard in Resources */,
 				BCFE945C25800446006A68FE /* Assets.xcassets in Resources */,
-				BCFE945A25800444006A68FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCFE945725800444006A68FE /* ViewController.swift in Sources */,
+				BCFE945725800444006A68FE /* MainViewController.swift in Sources */,
 				BCFE945325800444006A68FE /* AppDelegate.swift in Sources */,
 				BCFE945525800444006A68FE /* SceneDelegate.swift in Sources */,
 			);
@@ -146,14 +158,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BCFE945825800444006A68FE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BCFE945925800444006A68FE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BCFE945D25800446006A68FE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,7 +292,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JDNVBEZLP;
-				INFOPLIST_FILE = "Fora Soft (Test Task)/Info.plist";
+				INFOPLIST_FILE = "Fora Soft (Test Task)/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -308,7 +312,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JDNVBEZLP;
-				INFOPLIST_FILE = "Fora Soft (Test Task)/Info.plist";
+				INFOPLIST_FILE = "Fora Soft (Test Task)/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
