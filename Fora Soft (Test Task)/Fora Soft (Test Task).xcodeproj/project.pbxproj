@@ -35,6 +35,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BCB85FB625800C1500090C6D /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BCFE945625800444006A68FE /* MainViewController.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
 		BCFE944625800444006A68FE = {
 			isa = PBXGroup;
 			children = (
@@ -54,7 +62,7 @@
 		BCFE945125800444006A68FE /* Fora Soft (Test Task) */ = {
 			isa = PBXGroup;
 			children = (
-				BCFE945625800444006A68FE /* MainViewController.swift */,
+				BCB85FB625800C1500090C6D /* MainViewController */,
 				BCFE946E258008E5006A68FE /* Supporting */,
 				BCFE946C258008D1006A68FE /* App + Scene */,
 			);
