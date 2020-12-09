@@ -15,9 +15,7 @@ struct Album: Codable {
     var artistName: String?
     var collectionName: String?
     var primaryGenreName: String?
-    var artworkUrl100: String?
     var trackCount: Int?
-    var copyright: String?
-    var country: String?
     var releaseDate: String?
+    var artworkUrl100: String?
 }
