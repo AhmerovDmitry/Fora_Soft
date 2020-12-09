@@ -8,6 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    let baseUrl = "https://itunes.apple.com/search?entity=album&attribute=albumTerm&term="
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.isTranslucent = false
@@ -24,6 +25,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
+        
         view.backgroundColor = .white
         
         navigationController?.navigationBar.isTranslucent = false
@@ -33,6 +36,9 @@ class MainViewController: UIViewController {
     
 }
 
+// MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        NetworkService().fetchData(processedText: searchBar.text, urlString: baseUrl)
+    }
 }
