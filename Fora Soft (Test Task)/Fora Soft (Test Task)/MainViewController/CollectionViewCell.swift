@@ -17,17 +17,18 @@ class CollectionViewCell: UICollectionViewCell {
     let artistName: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.font = UIFont.boldSystemFont(ofSize: 6)
+        text.font = UIFont.boldSystemFont(ofSize: 10)
         text.backgroundColor = .white
         text.textAlignment = .center
         text.numberOfLines = 0
+        text.textColor = .lightGray
         
         return text
     }()
     let artistAlbumName: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.font = UIFont.systemFont(ofSize: 4)
+        text.font = UIFont.systemFont(ofSize: 13)
         text.backgroundColor = .white
         text.textAlignment = .center
         text.numberOfLines = 0
@@ -37,10 +38,8 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        [titleImage, artistName, artistAlbumName].forEach({ contentView.addSubview($0) })
         
-        contentView.addSubview(titleImage)
-        contentView.addSubview(artistName)
-        contentView.addSubview(artistAlbumName)
         NSLayoutConstraint.activate([
             titleImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
@@ -57,14 +56,9 @@ class CollectionViewCell: UICollectionViewCell {
             artistAlbumName.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             artistAlbumName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        
-        contentView.backgroundColor = .green
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // Method for update cell information (titleImage, artistName, artistAlbumName)
     func updateCellData (album: Album?) {
         guard let image = album?.artworkUrl100 else { return }
         guard let imageUrl = URL(string: image) else { return }
@@ -78,6 +72,18 @@ class CollectionViewCell: UICollectionViewCell {
                 }
             }
         }
+        
+    }
+    
+    // Image will be assigned nil for reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleImage.image = nil
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented CollectionViewCell")
     }
     
 }

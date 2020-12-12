@@ -12,12 +12,16 @@ class MainViewController: UIViewController {
     let baseUrl = "https://itunes.apple.com/search?entity=album&attribute=albumTerm&term="
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.isTranslucent = false
         
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.backgroundColor = .white
+            searchBar.searchTextField.backgroundColor = .systemGray5
         } else {
-            // Fallback on earlier versions
+            if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+                textField.backgroundColor = UIColor(red: 229 / 255,
+                                                    green: 229 / 255,
+                                                    blue: 234 / 255,
+                                                    alpha: 1)
+            }
         }
         
         return searchBar
@@ -30,6 +34,7 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .white
         collectionView.register(CollectionViewCell.self,
                                 forCellWithReuseIdentifier: "cellId")
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         return collectionView
     }()
@@ -44,7 +49,7 @@ class MainViewController: UIViewController {
         view.backgroundColor = .white
         
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = .lightGray
+        navigationController?.navigationBar.barTintColor = .white
         navigationItem.titleView = searchBar
         
         setupConstraints()
@@ -70,12 +75,13 @@ extension MainViewController: UISearchBarDelegate {
         NetworkService().fetchData(processedText: searchBar.text, urlString: baseUrl) { [weak self] (result) in
             switch result {
             case .success(let albums):
-                self?.allAlbums = albums
+                self?.allAlbums = albums.sorted(by: { $0?.collectionName ?? "collectionName" < $1?.collectionName ?? "collectionName" })
             case .failure(let error):
                 print(error)
             }
+            self?.collectionView.reloadData()
+            self?.searchBar.resignFirstResponder()
         }
-        collectionView.reloadData()
-        searchBar.resignFirstResponder()
+        
     }
 }
