@@ -90,7 +90,7 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
-    //MARK: - ViewDidLoad()
+    // MARK: - ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +99,20 @@ class DetailViewController: UIViewController {
         setupConstraints()
         setupArtistInfo()
     }
+    // MARK: - Methods for update navigationController layout
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.view.setNeedsLayout()
+        navigationController?.view.layoutIfNeeded()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.view.setNeedsLayout()
+        navigationController?.view.layoutIfNeeded()
+    }
+    
     func setupConstraints() {
         // MARK: - ArtistInfoStack constraints
         [artistAlbumName, artistName].forEach({ artistInfoStack.addArrangedSubview($0) })
