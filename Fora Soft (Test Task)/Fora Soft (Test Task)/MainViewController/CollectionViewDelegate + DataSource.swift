@@ -30,7 +30,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        
+        let detailController = DetailViewController()
+        detailController.album = allAlbums[indexPath.item]
+        
+        navigationController?.pushViewController(detailController, animated: true)
         searchBar.resignFirstResponder()
     }
     

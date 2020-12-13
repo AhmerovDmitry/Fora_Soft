@@ -8,6 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var album: Album?
+    
     // MARK: - UI Properties
     let titleImage: UIImageView = {
         let image = UIImageView()
@@ -26,7 +29,6 @@ class DetailViewController: UIViewController {
         text.adjustsFontSizeToFitWidth = true
         text.font = UIFont.systemFont(ofSize: 15)
         text.numberOfLines = 2
-        text.text = "Album Name"
         
         return text
     }()
@@ -36,7 +38,6 @@ class DetailViewController: UIViewController {
         text.textColor = .lightGray
         text.textAlignment = .left
         text.font = UIFont.systemFont(ofSize: 13)
-        text.text = "Artist Name"
         
         return text
     }()
@@ -47,7 +48,6 @@ class DetailViewController: UIViewController {
         text.textColor = .lightGray
         text.textAlignment = .left
         text.adjustsFontSizeToFitWidth = true
-        text.text = "Style"
         
         return text
     }()
@@ -58,7 +58,6 @@ class DetailViewController: UIViewController {
         text.textColor = .lightGray
         text.textAlignment = .left
         text.adjustsFontSizeToFitWidth = true
-        text.text = "Tracks Count"
         
         return text
     }()
@@ -69,10 +68,10 @@ class DetailViewController: UIViewController {
         text.textColor = .lightGray
         text.textAlignment = .left
         text.adjustsFontSizeToFitWidth = true
-        text.text = "Release Date"
         
         return text
     }()
+    
     // MARK: - UIStackView Properties
     let artistInfoStack: UIStackView = {
         let stackView = UIStackView()
@@ -90,6 +89,7 @@ class DetailViewController: UIViewController {
         
         return stackView
     }()
+    
     //MARK: - ViewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,9 +97,10 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         setupConstraints()
+        setupArtistInfo()
     }
     func setupConstraints() {
-        // MARK: - ArtinsInfoStack constraints
+        // MARK: - ArtistInfoStack constraints
         [artistAlbumName, artistName].forEach({ artistInfoStack.addArrangedSubview($0) })
         NSLayoutConstraint.activate([
             artistAlbumName.topAnchor.constraint(equalTo: artistInfoStack.topAnchor),
@@ -139,4 +140,30 @@ class DetailViewController: UIViewController {
         ])
     }
     
+    func setupArtistInfo() {
+        guard let album = album else { return }
+        
+        artistAlbumName.text = album.collectionName
+        artistName.text = album.artistName
+        artistStyle.text = album.primaryGenreName
+        trackCount.text = "\(album.trackCount ?? 0) Songs"
+
+        titleImage.image = UIImage(
+            data: try! Data(
+                contentsOf: URL(
+                    string: (album.artworkUrl100!)
+                )!
+            )
+        )
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
+        if let date = dateFormatterGet.date(from: album.releaseDate!) {
+            releaseDate.text = dateFormatterPrint.string(from: date)
+        } else {
+           print("There was an error decoding the string")
+        }
+    }
 }

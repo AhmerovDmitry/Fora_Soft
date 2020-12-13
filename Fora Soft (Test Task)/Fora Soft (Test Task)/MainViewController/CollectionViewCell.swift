@@ -8,6 +8,8 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    //MARK: - UI Properties
     let titleImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +38,7 @@ class CollectionViewCell: UICollectionViewCell {
         return text
     }()
     
+    // MARK: - Init()
     override init(frame: CGRect) {
         super.init(frame: frame)
         [titleImage, artistName, artistAlbumName].forEach({ contentView.addSubview($0) })
@@ -82,6 +85,7 @@ class CollectionViewCell: UICollectionViewCell {
         titleImage.image = nil
     }
     
+    // MARK: - Required init
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented CollectionViewCell")
     }
