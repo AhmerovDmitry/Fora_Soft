@@ -8,7 +8,6 @@
 import UIKit
 
 class NetworkService {
-    
     let baseUrl = "https://itunes.apple.com/search?entity=album&attribute=albumTerm&term="
     let songsUrl = "https://itunes.apple.com/lookup?entity=song&id="
     

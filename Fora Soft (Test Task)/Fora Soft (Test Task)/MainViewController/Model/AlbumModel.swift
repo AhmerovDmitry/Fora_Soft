@@ -20,12 +20,3 @@ struct Album: Codable {
     var artworkUrl100: String?
     var collectionId: Int?
 }
-
-struct TracksModel: Codable {
-    var results: [Track?]
-}
-
-struct Track: Codable {
-    var trackName: String?
-    var trackNumber: Int?
-}

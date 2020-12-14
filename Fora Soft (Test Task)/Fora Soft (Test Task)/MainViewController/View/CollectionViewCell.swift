@@ -8,7 +8,6 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
     //MARK: - UI Properties
     let titleImage: UIImageView = {
         let image = UIImageView()

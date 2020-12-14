@@ -66,21 +66,3 @@ class MainViewController: UIViewController {
     }
     
 }
-
-// MARK: - UISearchBarDelegate
-extension MainViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        NetworkService().fetchAlbums(processedText: searchBar.text) { [weak self] (result) in
-            switch result {
-            case .success(let albums):
-                self?.allAlbums = albums.sorted(by: { $0?.collectionName ?? "collectionName" < $1?.collectionName ?? "collectionName" })
-            case .failure(let error):
-                print(error)
-            }
-            self?.collectionView.reloadData()
-            self?.searchBar.resignFirstResponder()
-        }
-        
-    }
-}

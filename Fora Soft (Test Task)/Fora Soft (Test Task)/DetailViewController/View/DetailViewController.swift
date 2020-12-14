@@ -10,13 +10,13 @@ import UIKit
 class DetailViewController: UIViewController {
     var album: Album?
     var allTracks = [Track]()
-    
     // MARK: - UI Properties
     let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         tableView.backgroundColor = .white
+        tableView.tableFooterView = UIView(frame: .zero)
         
         return tableView
     }()
@@ -107,9 +107,8 @@ class DetailViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        setupConstraints()
         setupArtistInfo()
-        
+        setupConstraints()
         fetchTracks()
     }
     // MARK: - Methods for update navigationController layout
@@ -171,51 +170,4 @@ class DetailViewController: UIViewController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }
-    
-    func setupArtistInfo() {
-        guard let album = album else { return }
-        
-        artistAlbumName.text = album.collectionName
-        artistName.text = album.artistName
-        artistStyle.text = album.primaryGenreName
-        trackCount.text = "\(album.trackCount ?? 0) Songs"
-        
-        titleImage.image = UIImage(
-            data: try! Data(
-                contentsOf: URL(
-                    string: (album.artworkUrl100!)
-                )!
-            )
-        )
-        
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "MMM dd,yyyy"
-        if let date = dateFormatterGet.date(from: album.releaseDate!) {
-            releaseDate.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
-        }
-    }
-}
-
-extension DetailViewController {
-    
-    func fetchTracks() {
-        NetworkService().fetchAlbumTracks(collectionId: (album?.collectionId)!) { [weak self] (result) in
-            switch result {
-            case .success(let tracks):
-                for track in tracks {
-                    if track?.trackName != nil {
-                        self?.allTracks.append(track!)
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-            self?.tableView.reloadData()
-        }
-    }
-    
 }
