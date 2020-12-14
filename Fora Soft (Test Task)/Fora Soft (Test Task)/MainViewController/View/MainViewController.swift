@@ -49,6 +49,7 @@ class MainViewController: UIViewController {
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = .white
+        navigationItem.backButtonTitle = "Search"
         navigationItem.titleView = searchBar
         
         setupConstraints()

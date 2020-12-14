@@ -78,8 +78,8 @@
 		BCC5B93D2587AC1F00C0D75D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BCB85FC32580F6DC00090C6D /* CollectionViewCell.swift */,
 				BCFE945625800444006A68FE /* MainViewController.swift */,
+				BCB85FC32580F6DC00090C6D /* CollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
