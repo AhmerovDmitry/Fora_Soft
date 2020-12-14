@@ -18,4 +18,14 @@ struct Album: Codable {
     var trackCount: Int?
     var releaseDate: String?
     var artworkUrl100: String?
+    var collectionId: Int?
+}
+
+struct TracksModel: Codable {
+    var results: [Track?]
+}
+
+struct Track: Codable {
+    var trackName: String?
+    var trackNumber: Int?
 }

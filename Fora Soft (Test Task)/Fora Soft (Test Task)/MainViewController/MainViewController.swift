@@ -9,7 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     var allAlbums = [Album?]()
-    let baseUrl = "https://itunes.apple.com/search?entity=album&attribute=albumTerm&term="
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         
@@ -72,7 +71,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        NetworkService().fetchData(processedText: searchBar.text, urlString: baseUrl) { [weak self] (result) in
+        NetworkService().fetchAlbums(processedText: searchBar.text) { [weak self] (result) in
             switch result {
             case .success(let albums):
                 self?.allAlbums = albums.sorted(by: { $0?.collectionName ?? "collectionName" < $1?.collectionName ?? "collectionName" })

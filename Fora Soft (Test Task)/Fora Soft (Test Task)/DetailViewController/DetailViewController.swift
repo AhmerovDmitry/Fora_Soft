@@ -8,10 +8,18 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
     var album: Album?
+    var allTracks = [Track]()
     
     // MARK: - UI Properties
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.backgroundColor = .white
+        
+        return tableView
+    }()
     let titleImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -94,10 +102,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         view.backgroundColor = .white
         
         setupConstraints()
         setupArtistInfo()
+        
+        fetchTracks()
     }
     // MARK: - Methods for update navigationController layout
     override func viewWillAppear(_ animated: Bool) {
@@ -136,7 +149,7 @@ class DetailViewController: UIViewController {
             releaseDate.leftAnchor.constraint(equalTo: albumInfoStack.leftAnchor)
         ])
         // MARK: - UIStackView and UI constraints
-        [titleImage, artistInfoStack, albumInfoStack].forEach({ view.addSubview($0) })
+        [titleImage, artistInfoStack, albumInfoStack, tableView].forEach({ view.addSubview($0) })
         NSLayoutConstraint.activate([
             titleImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             titleImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
@@ -150,7 +163,12 @@ class DetailViewController: UIViewController {
             
             albumInfoStack.bottomAnchor.constraint(equalTo: titleImage.bottomAnchor),
             albumInfoStack.leftAnchor.constraint(equalTo: titleImage.rightAnchor, constant: 10),
-            albumInfoStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10)
+            albumInfoStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            
+            tableView.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: 10),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }
     
@@ -161,7 +179,7 @@ class DetailViewController: UIViewController {
         artistName.text = album.artistName
         artistStyle.text = album.primaryGenreName
         trackCount.text = "\(album.trackCount ?? 0) Songs"
-
+        
         titleImage.image = UIImage(
             data: try! Data(
                 contentsOf: URL(
@@ -177,7 +195,27 @@ class DetailViewController: UIViewController {
         if let date = dateFormatterGet.date(from: album.releaseDate!) {
             releaseDate.text = dateFormatterPrint.string(from: date)
         } else {
-           print("There was an error decoding the string")
+            print("There was an error decoding the string")
         }
     }
+}
+
+extension DetailViewController {
+    
+    func fetchTracks() {
+        NetworkService().fetchAlbumTracks(collectionId: (album?.collectionId)!) { [weak self] (result) in
+            switch result {
+            case .success(let tracks):
+                for track in tracks {
+                    if track?.trackName != nil {
+                        self?.allTracks.append(track!)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+            self?.tableView.reloadData()
+        }
+    }
+    
 }

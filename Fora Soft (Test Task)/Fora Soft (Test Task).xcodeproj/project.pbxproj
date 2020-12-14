@@ -11,6 +11,7 @@
 		BCB85FBE2580CF8400090C6D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB85FBD2580CF8400090C6D /* NetworkService.swift */; };
 		BCB85FC12580D87900090C6D /* CollectionViewDelegate + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB85FC02580D87900090C6D /* CollectionViewDelegate + DataSource.swift */; };
 		BCB85FC42580F6DD00090C6D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB85FC32580F6DC00090C6D /* CollectionViewCell.swift */; };
+		BCC5B93A25876D8F00C0D75D /* DetailViewControllerDelegate + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5B93925876D8F00C0D75D /* DetailViewControllerDelegate + DataSource.swift */; };
 		BCDA0E64258372C200D119A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDA0E63258372C200D119A1 /* DetailViewController.swift */; };
 		BCFE945325800444006A68FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945225800444006A68FE /* AppDelegate.swift */; };
 		BCFE945525800444006A68FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFE945425800444006A68FE /* SceneDelegate.swift */; };
@@ -24,6 +25,7 @@
 		BCB85FBD2580CF8400090C6D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BCB85FC02580D87900090C6D /* CollectionViewDelegate + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDelegate + DataSource.swift"; sourceTree = "<group>"; };
 		BCB85FC32580F6DC00090C6D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		BCC5B93925876D8F00C0D75D /* DetailViewControllerDelegate + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailViewControllerDelegate + DataSource.swift"; sourceTree = "<group>"; };
 		BCDA0E63258372C200D119A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BCFE944F25800444006A68FE /* Fora Soft (Test Task).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fora Soft (Test Task).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFE945225800444006A68FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				BCDA0E63258372C200D119A1 /* DetailViewController.swift */,
+				BCC5B93925876D8F00C0D75D /* DetailViewControllerDelegate + DataSource.swift */,
 			);
 			path = DetailViewController;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				BCB85FC42580F6DD00090C6D /* CollectionViewCell.swift in Sources */,
 				BCB85FBA2580CE7000090C6D /* AlbumModel.swift in Sources */,
 				BCFE945325800444006A68FE /* AppDelegate.swift in Sources */,
+				BCC5B93A25876D8F00C0D75D /* DetailViewControllerDelegate + DataSource.swift in Sources */,
 				BCB85FC12580D87900090C6D /* CollectionViewDelegate + DataSource.swift in Sources */,
 				BCFE945525800444006A68FE /* SceneDelegate.swift in Sources */,
 				BCDA0E64258372C200D119A1 /* DetailViewController.swift in Sources */,
